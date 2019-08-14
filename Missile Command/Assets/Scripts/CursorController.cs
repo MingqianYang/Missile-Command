@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CursorController : MonoBehaviour
 {
+    [SerializeField] private GameObject missilePrefab;
+    [SerializeField] private GameObject missileLauncherPrefab;
     [SerializeField] private Texture2D cursorTexture;
 
     private Vector2 cursorHotspot;
@@ -18,6 +20,10 @@ public class CursorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // Left clike mouse
+        if (Input.GetMouseButtonDown(0))
+        {
+            Instantiate(missilePrefab, missileLauncherPrefab.transform.position, Quaternion.identity);
+        }
     }
 }
