@@ -13,26 +13,25 @@ public class EnemyMissile : MonoBehaviour
     private float m_Angle;
 
     // The transform of defenders
-    Transform target;
+    Vector3 target;
 
     // Start is called before the first frame update
     void Start()
     {
         defenders = GameObject.FindGameObjectsWithTag("Defenders");
-        target = defenders[Random.Range(0, defenders.Length)].transform;
+        target = defenders[Random.Range(0, defenders.Length)].transform.position;
 
-        //transform.rotation = Quaternion.AngleAxis(180, Vector3.back);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
 
         // Missile always toward the target
-        Vector2 direction = target.position - transform.position;
-         m_Angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Vector2 direction = target - transform.position;
+        m_Angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.AngleAxis(m_Angle - 90, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, speed * Time.deltaTime);
     }
@@ -41,10 +40,21 @@ public class EnemyMissile : MonoBehaviour
     {
         if (collision.CompareTag("Defenders"))
         {
-            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            MissileExpose();
             Destroy(collision.gameObject);
         }
+        else if (collision.CompareTag("Explosions"))
+        {
+            MissileExpose();
+            Destroy(collision.gameObject);
+        }
+    }
+
+    private void MissileExpose()
+    {
+        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+        
     }
 
     void OnGUI()

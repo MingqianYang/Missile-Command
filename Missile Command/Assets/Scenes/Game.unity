@@ -484,52 +484,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 867361939}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &907791256
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 907791258}
-  - component: {fileID: 907791257}
-  m_Layer: 0
-  m_Name: EnemyMissileSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &907791257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907791256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87d90b5d55ce88e44b9a30793155b336, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  missilePrefab: {fileID: 700249699697184000, guid: cfe0d0d57706aa941903f2b6b498c00a,
-    type: 3}
-  yPadding: 0.5
---- !u!4 &907791258
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 907791256}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.7509346, y: -1.7396431, z: -0.09765625}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &985000399 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 872657241023614591, guid: 44f7abf0bef27254fa1e574bb45d5a05,
@@ -676,7 +630,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1152225802}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.89, y: -5.26, z: 0}
+  m_LocalPosition: {x: 13.31, y: -5.26, z: 0}
   m_LocalScale: {x: 1.2178515, y: 1.145, z: 1}
   m_Children: []
   m_Father: {fileID: 316089254}
@@ -1007,32 +961,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3923814304439277696}
   m_PrefabAsset: {fileID: 0}
---- !u!61 &2065624750
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2065624749}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.013210148, y: -0.017613709}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.5508552, y: 0.71818364}
-  m_EdgeRadius: 0
 --- !u!1 &2096661582
 GameObject:
   m_ObjectHideFlags: 0
@@ -1186,6 +1114,80 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44f7abf0bef27254fa1e574bb45d5a05, type: 3}
+--- !u!1001 &3339189180750671815
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3339189179910415455, guid: 6c9e3d10f7a31854290e7be860c46828,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyMissileSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339189179910415453, guid: 6c9e3d10f7a31854290e7be860c46828,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.7509346
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339189179910415453, guid: 6c9e3d10f7a31854290e7be860c46828,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.7396431
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339189179910415453, guid: 6c9e3d10f7a31854290e7be860c46828,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.09765625
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339189179910415453, guid: 6c9e3d10f7a31854290e7be860c46828,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339189179910415453, guid: 6c9e3d10f7a31854290e7be860c46828,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339189179910415453, guid: 6c9e3d10f7a31854290e7be860c46828,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339189179910415453, guid: 6c9e3d10f7a31854290e7be860c46828,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339189179910415453, guid: 6c9e3d10f7a31854290e7be860c46828,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339189179910415453, guid: 6c9e3d10f7a31854290e7be860c46828,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339189179910415453, guid: 6c9e3d10f7a31854290e7be860c46828,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339189179910415453, guid: 6c9e3d10f7a31854290e7be860c46828,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339189179910415454, guid: 6c9e3d10f7a31854290e7be860c46828,
+        type: 3}
+      propertyPath: missilesNumbersOfThisRound
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6c9e3d10f7a31854290e7be860c46828, type: 3}
 --- !u!1001 &3923814304439277696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1197,11 +1199,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MissileLauncher
-      objectReference: {fileID: 0}
-    - target: {fileID: 3923814305965667885, guid: a24be87d499df4949957ee507f984ca2,
-        type: 3}
-      propertyPath: m_TagString
-      value: Defenders
       objectReference: {fileID: 0}
     - target: {fileID: 3923814305965667887, guid: a24be87d499df4949957ee507f984ca2,
         type: 3}
@@ -1258,6 +1255,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8793292472826674240, guid: a24be87d499df4949957ee507f984ca2, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a24be87d499df4949957ee507f984ca2, type: 3}
