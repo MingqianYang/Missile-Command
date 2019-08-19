@@ -10,9 +10,14 @@ public class CursorController : MonoBehaviour
 
     private Vector2 cursorHotspot;
 
+    private GameController myGameController;
+
     // Start is called before the first frame update
     void Start()
     {
+        myGameController = GameObject.FindObjectOfType<GameController>();
+
+
         cursorHotspot = new Vector2(cursorTexture.width / 2f, cursorTexture.height / 2f);
         Cursor.SetCursor(cursorTexture, cursorHotspot, CursorMode.Auto);
     }
@@ -21,9 +26,11 @@ public class CursorController : MonoBehaviour
     void Update()
     {
         // Left clike mouse
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && myGameController.missilesLeft > 0)
         {
             Instantiate(missilePrefab, missileLauncherPrefab.transform.position, Quaternion.identity);
+            myGameController.missilesLeft--;
+            myGameController.UpdateMissilesLeftText();
         }
     }
 }

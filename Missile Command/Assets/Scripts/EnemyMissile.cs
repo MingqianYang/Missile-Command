@@ -45,8 +45,10 @@ public class EnemyMissile : MonoBehaviour
         }
         else if (collision.CompareTag("Explosions"))
         {
+            // Add scores when successfully destroyed an enemy missile
+            FindObjectOfType<GameController>().AddMissileDestroyedPoints();
             MissileExpose();
-            Destroy(collision.gameObject);
+           // Destroy(collision.gameObject);
         }
     }
 
