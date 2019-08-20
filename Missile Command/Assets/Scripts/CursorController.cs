@@ -26,10 +26,10 @@ public class CursorController : MonoBehaviour
     void Update()
     {
         // Left clike mouse
-        if (Input.GetMouseButtonDown(0) && myGameController.missilesLeft > 0)
+        if (Input.GetMouseButtonDown(0) && myGameController.playerMissilesLeft > 0)
         {
             Instantiate(missilePrefab, missileLauncherPrefab.transform.position, Quaternion.identity);
-            myGameController.missilesLeft--;
+            myGameController.playerMissilesLeft--;
             myGameController.UpdateMissilesLeftText();
         }
     }

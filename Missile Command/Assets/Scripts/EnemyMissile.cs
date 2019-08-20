@@ -40,6 +40,7 @@ public class EnemyMissile : MonoBehaviour
     {
         if (collision.CompareTag("Defenders"))
         {
+            FindObjectOfType<GameController>().EnemyMissileDestroyed();
             MissileExpose();
             Destroy(collision.gameObject);
         }
