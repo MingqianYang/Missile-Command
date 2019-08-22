@@ -10,6 +10,8 @@ public class EnemyMissile : MonoBehaviour
 
     private GameObject[] defenders;
 
+    private GameController myGameController;
+
     private float m_Angle;
 
     // The transform of defenders
@@ -18,9 +20,11 @@ public class EnemyMissile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        myGameController = GameController.FindObjectOfType<GameController>();
+
         defenders = GameObject.FindGameObjectsWithTag("Defenders");
         target = defenders[Random.Range(0, defenders.Length)].transform.position;
-
+        speed = myGameController.enemyMissileSpeed;
     }
 
     // Update is called once per frame
@@ -34,20 +38,32 @@ public class EnemyMissile : MonoBehaviour
         m_Angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.AngleAxis(m_Angle - 90, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, speed * Time.deltaTime);
+
+        if (transform.position.Equals(target))
+        {
+            MissileExpose();
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Defenders"))
         {
-            FindObjectOfType<GameController>().EnemyMissileDestroyed();
+            myGameController.EnemyMissileDestroyed();
             MissileExpose();
+            if (collision.GetComponent<MissileLauncher>() != null)
+            {
+                // subtract player missiles when launcher hit 
+                myGameController.MissileLauncherHit();
+                return;
+            }
             Destroy(collision.gameObject);
         }
         else if (collision.CompareTag("Explosions"))
         {
             // Add scores when successfully destroyed an enemy missile
-            FindObjectOfType<GameController>().AddMissileDestroyedPoints();
+            myGameController.AddMissileDestroyedPoints();
             MissileExpose();
            // Destroy(collision.gameObject);
         }

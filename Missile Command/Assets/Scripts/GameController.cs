@@ -11,8 +11,10 @@ public class GameController : MonoBehaviour
 
     public int score = 0;
     public int level = 1;
+    public float enemyMissileSpeed = 1f;
+    [SerializeField] private float enemyMissileSpeedMultiplier = 1.25f;
     public int playerMissilesLeft = 30;
-    private int enemyMissilesThisRound = 20;
+    private int enemyMissilesThisRound = 15;
     private int enemyMissilesLeftInRound = 0;
   
 
@@ -23,6 +25,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI missileLeftText;
+    [SerializeField] private TextMeshProUGUI countdownText;
 
     [SerializeField] private int missileEndofRoundPoints = 5;
     [SerializeField] private int cityEndofRoundPoints = 100;
@@ -30,6 +33,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI leftOverMissileBonusText;
     [SerializeField] private TextMeshProUGUI leftOverCityBonusText;
     [SerializeField] private TextMeshProUGUI totalBonusText;
+
+    private bool isRoundOver = false;
 
     // Start is called before the first frame update
     void Start()
@@ -47,8 +52,9 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemyMissilesLeftInRound <=0)
+        if (enemyMissilesLeftInRound <=0 && !isRoundOver)
         {
+            isRoundOver = true;
             StartCoroutine(EndofRound());
         }
     }
@@ -80,6 +86,11 @@ public class GameController : MonoBehaviour
         enemyMissilesLeftInRound--;
     }
 
+    public void MissileLauncherHit()
+    {
+        playerMissilesLeft -= 10;
+        UpdateMissilesLeftText();
+    }
     private void StartRound()
     {
         enemyMissileSpawner.missilesToSpawnThisRound = enemyMissilesThisRound;
@@ -107,5 +118,29 @@ public class GameController : MonoBehaviour
         totalBonusText.text = "Total Bonus: " + totalBonus;
 
         score += totalBonus;
+        UpdateScoreText();
+
+        countdownText.text = "3";
+        yield return new WaitForSeconds(1f);
+
+        countdownText.text = "2";
+        yield return new WaitForSeconds(1f);
+
+        countdownText.text = "1";
+        yield return new WaitForSeconds(1f);
+
+        // Hide Panel
+        endOfRoundPanel.SetActive(false);
+
+        // Commence new round
+        isRoundOver = false;
+
+        //  Updating new round settings;
+        enemyMissileSpeed *= enemyMissileSpeedMultiplier;
+        playerMissilesLeft = 30;
+        StartRound();
+        UpdateLevelText();
+        UpdateMissilesLeftText();
+
     }
 }

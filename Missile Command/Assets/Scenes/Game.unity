@@ -2649,6 +2649,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3923814304439277696}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2065624750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065624749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32c030d865239264b9d25855e439dd1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2096661582
 GameObject:
   m_ObjectHideFlags: 0
@@ -2909,6 +2921,21 @@ PrefabInstance:
       propertyPath: totalBonusText
       value: 
       objectReference: {fileID: 237063128}
+    - target: {fileID: 3166247587106882624, guid: ababde04cceabe446b4e3c192d1b2141,
+        type: 3}
+      propertyPath: countdownText
+      value: 
+      objectReference: {fileID: 202727358}
+    - target: {fileID: 3166247587106882624, guid: ababde04cceabe446b4e3c192d1b2141,
+        type: 3}
+      propertyPath: enemyMissileSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3166247587106882624, guid: ababde04cceabe446b4e3c192d1b2141,
+        type: 3}
+      propertyPath: enemyMissileSpeedMultiplier
+      value: 1.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ababde04cceabe446b4e3c192d1b2141, type: 3}
 --- !u!1001 &3339189180750671815
