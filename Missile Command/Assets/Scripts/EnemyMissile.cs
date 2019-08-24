@@ -41,6 +41,7 @@ public class EnemyMissile : MonoBehaviour
 
         if (transform.position.Equals(target))
         {
+            myGameController.EnemyMissileDestroyed();
             MissileExpose();
         }
 

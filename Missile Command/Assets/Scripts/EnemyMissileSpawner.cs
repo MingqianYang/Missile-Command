@@ -8,7 +8,8 @@ public class EnemyMissileSpawner : MonoBehaviour
     [SerializeField] private float yPadding = 0.5f;
     private float minX, maX;
 
-    public int missilesToSpawnThisRound = 10;
+    public int missilesToSpawnThisRound { get; set; }
+    //public int missilesToSpawnThisRound = 10;
     public float timeBetweenMissiles = 0.5f;
 
     float yValue;

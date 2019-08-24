@@ -9,12 +9,16 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject endOfRoundPanel;
     EnemyMissileSpawner enemyMissileSpawner;
 
+
+    [SerializeField] private float enemyMissileSpeedMultiplier = 1.25f;
+
     public int score = 0;
     public int level = 1;
     public float enemyMissileSpeed = 1f;
-    [SerializeField] private float enemyMissileSpeedMultiplier = 1.25f;
+
+    public int currentMissilesLoadedLauncher = 0;
     public int playerMissilesLeft = 30;
-    private int enemyMissilesThisRound = 15;
+    private int enemyMissilesThisRound = 10;
     private int enemyMissilesLeftInRound = 0;
   
 
@@ -26,6 +30,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI missileLeftText;
     [SerializeField] private TextMeshProUGUI countdownText;
+    [SerializeField] private TextMeshProUGUI missilesLeftInLauncherText;
 
     [SerializeField] private int missileEndofRoundPoints = 5;
     [SerializeField] private int cityEndofRoundPoints = 100;
@@ -39,11 +44,16 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentMissilesLoadedLauncher = 10;
+        playerMissilesLeft -= 10;
+
         enemyMissileSpawner = GameObject.FindObjectOfType<EnemyMissileSpawner>();
 
         UpdateLevelText();
         UpdateScoreText();
         UpdateMissilesLeftText();
+        UpdateMissilesInLauncherText();
+
 
         StartRound();
 
@@ -57,11 +67,18 @@ public class GameController : MonoBehaviour
             isRoundOver = true;
             StartCoroutine(EndofRound());
         }
+    
     }
 
     public void UpdateMissilesLeftText()
     {
         missileLeftText.text = "Missile Left: " + playerMissilesLeft;
+        UpdateMissilesInLauncherText();
+    }
+
+    public void UpdateMissilesInLauncherText()
+    {
+        missilesLeftInLauncherText.text = "Missiles In Launcher: " + currentMissilesLoadedLauncher;
     }
 
     public void UpdateScoreText()
@@ -86,10 +103,43 @@ public class GameController : MonoBehaviour
         enemyMissilesLeftInRound--;
     }
 
+    public void PlayerFiredMissile()
+    {
+        if (currentMissilesLoadedLauncher > 0)
+        {
+            currentMissilesLoadedLauncher--;
+        }
+        if (currentMissilesLoadedLauncher == 0)
+        {
+            if (playerMissilesLeft>=10)
+            {
+                currentMissilesLoadedLauncher = 10;
+                playerMissilesLeft -= 10;
+            }else
+            {
+                currentMissilesLoadedLauncher = playerMissilesLeft;
+                playerMissilesLeft = 0;
+            }
+        }
+        
+        UpdateMissilesLeftText();
+    }
     public void MissileLauncherHit()
     {
-        playerMissilesLeft -= 10;
+       // playerMissilesLeft -= currentMissilesLoadedLauncher;
+        if (playerMissilesLeft >= 10)
+        {
+            currentMissilesLoadedLauncher = 10;
+            playerMissilesLeft -= 10;
+        }
+        else
+        {
+            currentMissilesLoadedLauncher = playerMissilesLeft;
+            playerMissilesLeft = 0;
+        }
+
         UpdateMissilesLeftText();
+        UpdateMissilesInLauncherText();
     }
     private void StartRound()
     {
