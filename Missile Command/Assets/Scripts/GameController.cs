@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour
     public int score = 0;
     public int level = 1;
     public float enemyMissileSpeed = 1f;
+
+    public int cityCounter = 0;
 
     public int currentMissilesLoadedLauncher = 0;
     public int playerMissilesLeft = 30;
@@ -48,6 +50,7 @@ public class GameController : MonoBehaviour
         playerMissilesLeft -= 10;
 
         enemyMissileSpawner = GameObject.FindObjectOfType<EnemyMissileSpawner>();
+        cityCounter = GameObject.FindObjectsOfType<City>().Length;
 
         UpdateLevelText();
         UpdateScoreText();
@@ -67,7 +70,11 @@ public class GameController : MonoBehaviour
             isRoundOver = true;
             StartCoroutine(EndofRound());
         }
-    
+
+        if (cityCounter <= 0)
+        {
+            SceneManager.LoadScene("End");
+        }
     }
 
     public void UpdateMissilesLeftText()
@@ -153,14 +160,33 @@ public class GameController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         endOfRoundPanel.SetActive(true);
-        int leftOverMissileBonus = playerMissilesLeft * missileEndofRoundPoints;
-
+        int leftOverMissileBonus = (playerMissilesLeft + currentMissilesLoadedLauncher ) * missileEndofRoundPoints;
 
         City[] cities = GameObject.FindObjectsOfType<City>();
         int leftOverCityBonus = cities.Length * cityEndofRoundPoints;
 
         int totalBonus = leftOverCityBonus + leftOverMissileBonus;
 
+        if (level >=3 && level <5)
+        {
+            totalBonus *= 2;
+        }
+        else if (level >= 5 && level < 7)
+        {
+            totalBonus *= 3;
+        }
+        else if (level >= 7 && level < 9)
+        {
+            totalBonus *= 4;
+        }
+        else if (level >= 9 && level < 11)
+        {
+            totalBonus *= 5;
+        }
+        else if (level >= 11  )
+        {
+            totalBonus *= 6;
+        }    
 
         // Display
         leftOverMissileBonusText.text = "Left over missile bonus: " + leftOverMissileBonus;
@@ -188,6 +214,10 @@ public class GameController : MonoBehaviour
         //  Updating new round settings;
         enemyMissileSpeed *= enemyMissileSpeedMultiplier;
         playerMissilesLeft = 30;
+
+        currentMissilesLoadedLauncher = 10;
+        playerMissilesLeft -= 10;
+
         StartRound();
         UpdateLevelText();
         UpdateMissilesLeftText();

@@ -59,6 +59,9 @@ public class EnemyMissile : MonoBehaviour
                 myGameController.MissileLauncherHit();
                 return;
             }
+
+            myGameController.cityCounter--;
+
             Destroy(collision.gameObject);
         }
         else if (collision.CompareTag("Explosions"))
