@@ -8,10 +8,9 @@ public class EnemyMissile : MonoBehaviour
 
     [SerializeField] private GameObject explosionPrefab;
 
+
     private GameObject[] defenders;
-
     private GameController myGameController;
-
     private float m_Angle;
 
     // The transform of defenders
@@ -25,6 +24,8 @@ public class EnemyMissile : MonoBehaviour
         defenders = GameObject.FindGameObjectsWithTag("Defenders");
         target = defenders[Random.Range(0, defenders.Length)].transform.position;
         speed = myGameController.enemyMissileSpeed;
+
+
     }
 
     // Update is called once per frame
@@ -77,6 +78,7 @@ public class EnemyMissile : MonoBehaviour
     {
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
+
         
     }
 

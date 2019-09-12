@@ -8,6 +8,8 @@ public class CursorController : MonoBehaviour
     [SerializeField] private GameObject missileLauncherPrefab;
     [SerializeField] private Texture2D cursorTexture;
 
+    AudioSource myAudio;
+
     private Vector2 cursorHotspot;
 
     private GameController myGameController;
@@ -17,6 +19,7 @@ public class CursorController : MonoBehaviour
     {
         myGameController = GameObject.FindObjectOfType<GameController>();
 
+        myAudio = GetComponent<AudioSource>();
 
         cursorHotspot = new Vector2(cursorTexture.width / 2f, cursorTexture.height / 2f);
         Cursor.SetCursor(cursorTexture, cursorHotspot, CursorMode.Auto);
@@ -31,6 +34,8 @@ public class CursorController : MonoBehaviour
             Instantiate(missilePrefab, missileLauncherPrefab.transform.position, Quaternion.identity);
 
             myGameController.PlayerFiredMissile();
+           
+            myAudio.Play();
         }
     }
 }
