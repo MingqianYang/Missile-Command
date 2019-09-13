@@ -218,6 +218,7 @@ public class GameController : MonoBehaviour
         currentMissilesLoadedLauncher = 10;
         playerMissilesLeft -= 10;
 
+        level++;
         StartRound();
         UpdateLevelText();
         UpdateMissilesLeftText();
