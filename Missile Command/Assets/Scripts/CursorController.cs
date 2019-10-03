@@ -38,4 +38,16 @@ public class CursorController : MonoBehaviour
             myAudio.Play();
         }
     }
+
+    public void LeapmotionTrigger()
+    {
+        if (myGameController.currentMissilesLoadedLauncher > 0)
+        {
+            Instantiate(missilePrefab, missileLauncherPrefab.transform.position, Quaternion.identity);
+
+            myGameController.PlayerFiredMissile();
+
+            myAudio.Play();
+        }
+    }
 }
