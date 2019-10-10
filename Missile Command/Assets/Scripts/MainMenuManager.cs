@@ -17,11 +17,13 @@ public class MainMenuManager : MonoBehaviour
         
     }
 
+    // Load the game scene
     public void StartGame()
     {
         SceneManager.LoadScene("Game");
     }
 
+    // Load the Main menu scene
     public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");

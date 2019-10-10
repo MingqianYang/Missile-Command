@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ExplosionDestruct : MonoBehaviour
 {
+    // The time period when the explosion visual effect will disapper
     [SerializeField]
     private readonly float destroyTime = 1f;
 

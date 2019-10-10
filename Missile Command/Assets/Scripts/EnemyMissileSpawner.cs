@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class EnemyMissileSpawner : MonoBehaviour
 {
+    // The missile prefab
     [SerializeField] private  GameObject missilePrefab;
-    [SerializeField] private float yPadding = 0.5f;
-    private float minX, maX;
 
+    // When spawn the missile, put it a little bit upper on the toppest view point
+    [SerializeField] private float yPadding = 0.5f;
+
+    // The x cordinate value of left up corner and the right up corner of the viewpoint
+    private float minX, maX;
+    
+    // The y cordinate value
+    private float yValue;
+
+    // How many enemy missiles will be spawned in this round
     public int missilesToSpawnThisRound { get; set; }
-    //public int missilesToSpawnThisRound = 10;
+
+    // The time gap between two generated missiles
     public float timeBetweenMissiles = 0.5f;
 
-    float yValue;
     // Start is called before the first frame update
     void Awake()
     {
@@ -20,8 +29,6 @@ public class EnemyMissileSpawner : MonoBehaviour
         maX = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, 0)).x;
 
         yValue = Camera.main.ViewportToWorldPoint(new Vector3(0, 1, 0)).y;
-
-      //StartCoroutine(SpawnMissiles(timeBetweenMissiles));
     }
 
     // Update is called once per frame
@@ -34,12 +41,13 @@ public class EnemyMissileSpawner : MonoBehaviour
     {
         StartCoroutine(SpawnMissiles(timeBetweenMissiles));
     }
+
     IEnumerator SpawnMissiles(float time)
     {
         while (missilesToSpawnThisRound > 0)
         {
+            // Randomly genertate the x posiiton
             float xValue = Random.Range(minX, maX);
-
 
             Instantiate(missilePrefab, new Vector3(xValue, yValue + yPadding, 0), Quaternion.identity);
 

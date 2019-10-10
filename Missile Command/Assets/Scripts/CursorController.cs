@@ -2,14 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// This component is attached to main camera
 public class CursorController : MonoBehaviour
 {
+    // Player's missile prefab
     [SerializeField] private GameObject missilePrefab;
+
+    // The missile launcher prefab on the ground in the middle
     [SerializeField] private GameObject missileLauncherPrefab;
+
+    // The replaced cursor texture
     [SerializeField] private Texture2D cursorTexture;
 
     AudioSource myAudio;
 
+    // The curors's central postion on the screen
     private Vector2 cursorHotspot;
 
     private GameController myGameController;
@@ -21,6 +28,7 @@ public class CursorController : MonoBehaviour
 
         myAudio = GetComponent<AudioSource>();
 
+        // Get the central position
         cursorHotspot = new Vector2(cursorTexture.width / 2f, cursorTexture.height / 2f);
         Cursor.SetCursor(cursorTexture, cursorHotspot, CursorMode.Auto);
     }
@@ -39,6 +47,8 @@ public class CursorController : MonoBehaviour
         }
     }
 
+
+    // Use leapmotion gesture to trigger missile relase event and is used in RigidRoundHand_L
     public void LeapmotionTrigger()
     {
         if (myGameController.currentMissilesLoadedLauncher > 0)
