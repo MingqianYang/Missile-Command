@@ -36,7 +36,7 @@ public class EnemyMissile : MonoBehaviour
         // Move the enmey missile to the defender's position
         transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
-        // the arrow point of the missile always toward the target
+        // The arrow point of the missile always towards the target
         Vector2 direction = target - transform.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
